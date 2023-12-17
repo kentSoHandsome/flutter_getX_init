@@ -124,3 +124,69 @@ extension RoutersPages on Routers {
     );
   }
 ```
+
+# tabbar 某一个item变大
+``` dart
+bottomNavigationBar: SizedBox(
+          height: 76.0, // 设置 BottomNavigationBar 的固定高度
+          child: Stack(
+            children: [
+              Positioned.fill(
+                child: Container(
+                  color: Colors.transparent, // 设置中间图标的背景色为透明色
+                ),
+              ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: BottomNavigationBar(
+                  backgroundColor: Colors.red,
+                  items: [
+                    BottomNavigationBarItem(
+                      icon: Icon(Icons.home),
+                      label: 'Home',
+                    ),
+                    BottomNavigationBarItem(
+                      icon: Icon(null),
+                      label: '',
+                    ),
+                    BottomNavigationBarItem(
+                      icon: Icon(Icons.person),
+                      label: 'Profile',
+                    ),
+                  ],
+                  currentIndex: logic.selectdIndex.value,
+                  onTap: (index) {
+                    if (index == 1) {
+                      return ;
+                    }
+                    logic.selectdIndex.value = index;
+                  },
+                ),
+              ),
+              Align(
+                alignment: Alignment.center,
+                child: FractionalTranslation(
+                  //在 FractionalTranslation 中，
+                  // 偏移量的取值范围是从 -1.0 到 1.0。
+                  // 当偏移量的 y 值设置为 -0.5 时，
+                  // 表示向上偏移了父容器高度的一半。
+                  // 这并不等于固定的 30 像素的偏移量，
+                  // 因为实际的偏移量取决于父容器的高度。
+                  translation: Offset(0.0, -0.3),
+                  child: SizedBox(
+                    width: 56.0, // 设置中间图标的宽度和高度
+                    height: 56.0,
+                    child: FloatingActionButton(
+                      backgroundColor: Colors.blue, // 设置中间图标的背景色
+                      child: Icon(Icons.add, size: 32.0), // 设置中间图标的大小
+                      onPressed: () {
+                        // 中间图标的点击事件处理
+                      },
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        )
+```
