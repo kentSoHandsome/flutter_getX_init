@@ -88,7 +88,7 @@ extension RoutersPages on Routers {
 
 ```
 
-#other
+# other
 用GetX插件(Android Studio)创建class，tabbar的build
 ```dart
 @override
