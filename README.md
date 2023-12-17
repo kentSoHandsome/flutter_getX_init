@@ -1,5 +1,5 @@
 # flutter_getX_init
-flutter的GETX框架的初始化模板库，复制粘贴即可。
+flutter的GETX框架的初始化模板库，复制粘贴即可。先引用get插件```get: ^4.6.6```
 
 # main.dart
 ``` dart
