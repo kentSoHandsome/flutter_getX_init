@@ -1,0 +1,2 @@
+# flutter_getX_init
+flutter的GETX框架的初始化模板库
