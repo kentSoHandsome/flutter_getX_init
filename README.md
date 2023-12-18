@@ -194,14 +194,14 @@ bottomNavigationBar: SizedBox(
 # 动画示例
 > 目前感觉get里执行动画，经常有问题，所以单独抽出来一个class，用```showDialog```来显示自定义动画。
 > 调用示例：
-> ```
-> howDialog(
+ ```
+ howDialog(
       context: context,
       builder: (context) {
         return const CustomDialog();
       },
     );
-> ```
+ ```
 ``` dart
 class CustomDialog extends StatefulWidget {
   const CustomDialog({super.key});
