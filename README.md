@@ -190,3 +190,107 @@ bottomNavigationBar: SizedBox(
           ),
         )
 ```
+
+# 动画示例
+> 目前感觉get里执行动画，经常有问题，所以单独抽出来一个class，用```showDialog```来显示自定义动画。
+> 调用示例：
+> ```
+> howDialog(
+      context: context,
+      builder: (context) {
+        return const CustomDialog();
+      },
+    );
+> ```
+``` dart
+class CustomDialog extends StatefulWidget {
+  const CustomDialog({super.key});
+
+  @override
+  _CustomDialogState createState() => _CustomDialogState();
+}
+
+class _CustomDialogState extends State<CustomDialog>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _animationController;
+  late Animation<Offset> _animation;
+
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 500),
+    );
+    _animation = Tween<Offset>(
+      begin: const Offset(0, 1),
+      end: Offset.zero,
+    ).animate(CurvedAnimation(
+      parent: _animationController,
+      curve: Curves.easeInOut,
+    ));
+    _animationController.forward();
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  void closeDialog() {
+    _animationController.reverse().then((value) {
+      Get.back();
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        GestureDetector(
+          onTap: () {
+            print('dfsf');
+            closeDialog();
+          },
+          child: Container(
+            color: Colors.transparent,
+          ),
+        ),
+        AnimatedBuilder(
+          animation: _animation,
+          builder: (context, child) {
+            return SlideTransition(
+              position: _animation,
+              child: child,
+            );
+          },
+          child: Align(
+            alignment: Alignment.bottomCenter,
+            child: GestureDetector(
+              onTap: () {
+                closeDialog();
+              },
+              child: Container(
+                color: Colors.white,
+                width: 200,
+                height: 200,
+                child: const Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Custom Dialog',
+                      style: TextStyle(fontSize: 20.0),
+                    ),
+                    SizedBox(height: 16.0),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        )
+      ],
+    );
+  }
+}
+```
