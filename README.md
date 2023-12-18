@@ -294,3 +294,13 @@ class _CustomDialogState extends State<CustomDialog>
   }
 }
 ```
+> 如果要自定义一个对话框。用`overlayState`和`overlayEntry`即可。删除的时候，调用`overlayEntry.remove()`即可
+``` dart
+final overlayState = Overlay.of(context);
+    final overlayEntry = OverlayEntry(
+      builder: (context) {
+        return CustomDialog();
+      }
+    );
+    overlayState.insert(overlayEntry);
+```
