@@ -195,7 +195,7 @@ bottomNavigationBar: SizedBox(
 > 目前感觉get里执行动画，经常有问题，所以单独抽出来一个class，用```showDialog```来显示自定义动画。
 > 调用示例：
  ```
- howDialog(
+ showDialog(
       context: context,
       builder: (context) {
         return const CustomDialog();
