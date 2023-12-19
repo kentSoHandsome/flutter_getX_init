@@ -191,6 +191,69 @@ bottomNavigationBar: SizedBox(
         )
 ```
 
+# tabbar实现凹凸效果。
+``` dart
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Notched Rectangular Fab'),
+          backgroundColor: Colors.indigo,
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: FloatingActionButton.extended(
+            backgroundColor: Colors.pink,
+            onPressed: () {},
+            icon: const Icon(Icons.add),
+            label: const Text("Add TODO")),
+        bottomNavigationBar: BottomAppBar(
+          color: Colors.indigo,
+          notchMargin: 6.0,
+          shape:const AutomaticNotchedShape(
+            RoundedRectangleBorder(),
+            StadiumBorder(
+              side: BorderSide(),
+            ),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                IconButton(
+                  icon:const Icon(
+                    Icons.person_outline,
+                    color: Colors.white,
+                  ),
+                  onPressed: () {},
+                ),
+                IconButton(
+                  icon:const Icon(
+                    Icons.info_outline,
+                    color: Colors.white,
+                  ),
+                  onPressed: () {},
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+```
+
 # 动画示例
 > 目前感觉get里执行动画，经常有问题，所以单独抽出来一个class，用```showDialog```来显示自定义动画。
 > 调用示例：
