@@ -367,3 +367,20 @@ final overlayState = Overlay.of(context);
     );
     overlayState.insert(overlayEntry);
 ```
+
+# 最简单的一个动画示例(平移动画)
+``` dart
+var controller = AnimationController(
+          vsync: this,
+          duration: Duration(seconds: 1),
+        )..forward();
+//如果要平移回去，执行反向执行的操作即可
+//controller.reverse();
+ return SlideTransition(
+          position: Tween<Offset>(
+            begin: Offset(0.0, -1.0),//Y值移动，从上到下
+            end: Offset.zero,
+          ).animate(controller),
+          child: Container(),
+);
+```
